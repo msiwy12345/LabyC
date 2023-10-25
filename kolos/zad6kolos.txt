@@ -1,0 +1,7 @@
+int (*(*f2)(double))(float);
+wskaznik do funkcji ktora przyjmuje double ktora wskazuje na funkcje ktora 
+przyjmije float ktora zwraca int;
+
+int *(*(*(f3)(int))(double))(float);
+wskaznik do funkcja ktora przyjmuje int, ktora wskazuje na funkcje ktora 
+przyjmije double, ktora wskazuja na funkcje ktora przyjmuje float i zwraca int;
