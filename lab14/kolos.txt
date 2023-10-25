@@ -1,0 +1,231 @@
+ZADANIE 1
+
+prosze wybrac definicje makra: printf(" %d", MAK(2*7,4*5)
+odp: #define MAK(a, b) (a / b)
+#define MAK(a, b) a/b 
+
+ZADANIE 2
+
+Mamy zdefiniowaną strukturę struct examp, zmienną var oraz wskaźnik p:
+struct examp {
+char *name;
+double A[3];
+double (f) (double);
+} var = {"sin", (0.0, 0.3, 0.5), sin), p = &var;
+
+Proszę napisać wywołanie funkcji printr, które przy użyciu wskaźnika p wypisuje wartość funkcji podpiętej do wskaźnika dla elementu tablicy A[1] -->wypisane ma zostać: sin (0.300000) = 0.295520 
+Wzór odpowiedzi
+printf ("%s (%f) = %f\n",
+);
+
+odp: printf("%s (%f) = %f\n", p->name, p->A[1], p->f(p->A[1]));
+
+ZADANIE 3
+
+Mamy zdefiniowane dwie zmienne var 11 i var_22 przechowujące informacje o osobie (wiek, dwa imiona imię, szczęśliwe numery)
+struct {
+int age;
+char *name [2];
+double lucky numbers[2];} var_11 = {1,{"JAN","TOM"},{1.0, 2.0}};
+
+struct {
+int age ;
+char name[2][10];
+double lucky numbers [2];} var_22 = {1,{"JAN", "TOM"},{1.0, 2.0}};
+Zakładając, że wskaźnik do pliku fp został odpowiednio utworzony (stosownie do rodzaju zapisu) należy zaznaczyć poprawne polecenia. Poprawność rozumiemy jako kompilacja bez ostrzeżeń/błędów, i 
+zapisanie wszystkich danych osoby do pliku binarnego (wiek, imię, szczęśliwe numery) lub tekstowego
+
+odp: fprintf (fp,"%d %s %s %f %f \n", var_22.age, var_22.name[0], var_22.name[1], var_22.lucky numbers [0], var_22.lucky numbers [1]);
+
+ZADANIE 4
+
+Proszę zadeklarować zmienną klasa, tak aby było poprawne następujące jej użycie:
+printf ("%d, %s, %s", klasa.numer, (klasa.nauczyciel+3)->nazwisko, klasa.nauczyciel [3].imie[2]);
+
+odp: #include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+    char* imie[3];
+    char* nazwisko;
+} Struktura2;
+
+typedef struct {
+    int numer;
+    Struktura2 nauczyciel[4];
+} Struktura1;
+
+int main(void) {
+    Struktura1 klasa;
+
+    // Inicjalizacja danych
+    klasa.numer = 10;
+    klasa.nauczyciel[3].nazwisko = "Doe";
+    klasa.nauczyciel[3].imie[2] = "John";
+
+    // Wyświetlanie danych
+    printf("%d, %s, %s", klasa.numer, (klasa.nauczyciel + 3)->nazwisko, klasa.nauczyciel[3].imie[2]);
+
+    return 0;
+}
+
+
+ZADANIE 5
+
+
+Mamy zadeklarowany typ wyliczeniowy.
+enum dni {Sunday, Monday = 2, Tuesday=3, Wednesday = 3, Thursday, Friday = 9, Saturday };
+co zostanie wypisane:
+enum dni i;
+for (i = Sunday; i <= Saturday; i++)
+printf(" %d ", i);
+
+odp: 0 1 2 3 4 5 6 7 8 9 10
+
+ZADANIE 6
+
+Mamy zdefiniowana strukturę struct foo izmienną t
+struct foo {
+int m; 
+struct (
+float x ;
+int n;
+};
+};
+struct foo t;
+Proszę napisać polecenia wypełniające wszystkie pola zmiennej t
+
+odp: int main() {
+    struct foo t;
+    
+    t.m = 5;
+    t.x = 3.14;
+    t.n = 10;
+    
+    printf("t.m = %d\n", t.m);
+    printf("t.x = %f\n", t.x);
+    printf("t.n = %d\n", t.n);
+    
+    return 0;
+}
+
+ZADANIE 7
+
+Mamy zadeklarowane
+struct str_11 {
+char a; 
+double b;
+char c[2];};
+struct str_22 {
+double b; 
+char a;
+char c[2];};
+union un_33 { 
+char a;
+char c[2] ; 
+double b;};
+union un 44 {
+char a; 
+char c[2] ;
+double b;
+int d;};
+posegreguj to od najmniejszego do najwiekszego: 
+sizeof(struct str_22) ,sizeof(union un_44), sizeof(union un_33), sizeof(struct str_11)
+
+odp: str1 > str2 > un3 > un4
+
+ZADANIE 8
+
+Mamy plik Makefile
+hello: hw_hello.o hw_power.o hw_main.o
+
+gcc hw_hello.o hw_power.o hw_main.o -o hello -1m
+hw_main.o: hw_defs.h hw_hello.h hw_power.h 
+gcc -c-Wall hw_main.c
+hw hello.o: hw hello.c hw defs.h 
+gcc-c-Wall hw_hello.c
+hw_power.o: hw_power.c hw_defs.h
+gcc -c-Wall hw_power.c-1m
+na dysku w katalogu roboczym (lokalnym) zapisane mamy pliki:
+hw_defs.h
+hw_hello.h
+hw_power.h
+hw_hello.c
+hw_power.c 
+hw_main.c
+Jakie pliki pojawią się po wykonaniu polecenia make
+Jaki będzie efekt wykonania następującej sekwencji komend: 
+touch hw_power.h
+make
+A BI
+po wykonaniu polecenia make:
+||
+po wykonaniu sekwencji poleceń:
+touch hw_defs.h
+make
+I
+!
+!!!
+III
+
+odp: Po wykonaniu polecenia `make` pojawią się pliki:
+- hello (plik wykonywalny)
+
+Po wykonaniu sekwencji poleceń:
+- touch hw_power.h (utworzenie pliku `hw_power.h`)
+- make (wykonanie makefile'a)
+
+Pliki, które pojawią się po wykonaniu sekwencji poleceń to:
+- hello (plik wykonywalny)
+- hw_defs.h (plik nagłówkowy)
+- hw_hello.h (plik nagłówkowy)
+- hw_power.h (plik nagłówkowy)
+- hw_hello.c (plik źródłowy)
+- hw_power.c (plik źródłowy)
+- hw_main.c (plik źródłowy)
+
+Wszystkie te pliki są wymagane przez makefile do kompilacji i utworzenia pliku wykonywalnego `hello`.
+
+ZADANIE 9 
+
+#include <stdio.h>
+
+struct data {
+    float pointA[3];
+    float pointB[3];
+    char name[2]; // napisy
+};
+
+struct graph {
+    char name[10]; // napis
+    struct data edges[3];
+};
+
+int main(void) {
+    struct graph Tab[5][3];
+    struct graph *wsk = *(Tab + 0) + 1;
+
+    // Wypełnienie przykładowymi wartościami
+    wsk->name[0] = 'A';
+    wsk->name[1] = 'B';
+    wsk->name[2] = '\0';
+
+    wsk->edges[1].pointA[0] = 1.0;
+    wsk->edges[1].pointA[1] = 2.0;
+    wsk->edges[1].pointA[2] = 3.0;
+
+    wsk->edges[1].pointB[0] = 4.0;
+    wsk->edges[1].pointB[1] = 5.0;
+    wsk->edges[1].pointB[2] = 6.0;
+
+    wsk->edges[1].name[0] = 'X';
+    wsk->edges[1].name[1] = 'Y';
+
+    // Wyświetlenie wartości
+    printf("name: %s\n", wsk->name);
+    printf("pointA: %.1f, %.1f, %.1f\n", wsk->edges[1].pointA[0], wsk->edges[1].pointA[1], wsk->edges[1].pointA[2]);
+    printf("pointB: %.1f, %.1f, %.1f\n", wsk->edges[1].pointB[0], wsk->edges[1].pointB[1], wsk->edges[1].pointB[2]);
+    printf("name (data): %c%c\n", wsk->edges[1].name[0], wsk->edges[1].name[1]);
+
+    return 0;
+}
